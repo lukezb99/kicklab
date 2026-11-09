@@ -1,0 +1,517 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Baller Box by Kick Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The Baller Box: an octagonal football cage with built-in goals that packs into one carry bag. Practise, improve, play more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: an eight-sided cage of content. Dark arena ground, floodlit orange for every point of contact (joints, CTAs), panels framed with octagon cut corners. */
+:root {
+  --ground: #0d1114;        /* arena floor, blue-black like the night shoot */
+  --panel: #161c21;         /* kickboard black */
+  --panel-2: #1e262c;
+  --mesh: #2c363e;          /* netting lines */
+  --chalk: #eef1f2;         /* text */
+  --dim: #9aa6ad;
+  --orange: #f2551d;        /* corner-joint orange */
+  --orange-hot: #ff7a3d;
+  --on-orange: #160a04;
+
+  --display: "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --marker: "Permanent Marker", "Comic Sans MS", cursive;
+
+  --step--1: clamp(0.8rem, 0.76rem + 0.2vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --step-2: clamp(1.7rem, 1.3rem + 1.6vw, 2.6rem);
+  --step-3: clamp(2.4rem, 1.6rem + 3.6vw, 4.6rem);
+  --step-4: clamp(3.4rem, 1.8rem + 7.4vw, 8.4rem);
+
+  --cut: 18px;
+  --wrap: 1180px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  background: var(--ground);
+  color: var(--chalk);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--orange-hot); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 700px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+.oct { clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut)); }
+
+.eyebrow {
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin: 0;
+}
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 0.95; }
+h2 {
+  font-size: var(--step-3);
+  font-weight: 900;
+  font-stretch: 62%;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+}
+h2 em { font-style: normal; color: var(--orange); }
+p { margin: 0; }
+.lede { color: var(--dim); max-width: 58ch; }
+.marker { font-family: var(--marker); color: var(--chalk); transform: rotate(-6deg); display: inline-block; line-height: 1.1; }
+.marker::after { content: ""; display: block; height: 3px; width: 70%; margin-top: 6px; background: var(--orange); border-radius: 3px; transform: rotate(-3deg); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  font-family: var(--display); font-weight: 800; font-stretch: 110%;
+  font-size: var(--step--1); letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+  padding: 1.05em 1.8em; border: 0; cursor: pointer;
+  background: var(--orange); color: var(--on-orange);
+  clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--orange-hot); transform: translateY(-2px); }
+.btn svg { width: 1.2em; height: 1.2em; }
+.btn.ghost { background: transparent; color: var(--chalk); box-shadow: inset 0 0 0 2px var(--mesh); clip-path: none; }
+.btn.ghost:hover { box-shadow: inset 0 0 0 2px var(--chalk); background: transparent; }
+
+/* Photos dissolve into the page instead of sitting in hard frames */
+.fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 80%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 80%, transparent);
+  mask-composite: intersect;
+}
+.fade-soft {
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  mask-image: linear-gradient(to bottom, #000 60%, transparent);
+}
+
+/* Header */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--ground) 86%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--mesh); }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { font-family: var(--display); font-weight: 900; font-stretch: 112%; font-size: 1.35rem; letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; }
+.logo span { color: var(--orange); }
+.logo sup { font-size: 0.45em; font-weight: 600; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a:not(.btn) { text-decoration: none; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.nav a:not(.btn):hover { color: var(--chalk); }
+.nav .btn { padding: 0.8em 1.3em; }
+@media (max-width: 760px) { .nav a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 75% 45%, color-mix(in srgb, #2f6a74 30%, transparent), transparent 70%), radial-gradient(40% 50% at 100% 90%, color-mix(in srgb, var(--orange) 18%, transparent), transparent 70%); pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-block: clamp(40px, 7vw, 96px) clamp(32px, 5vw, 72px); }
+.hero-copy { display: grid; gap: 24px; min-width: 0; container-type: inline-size; }
+.hero h1 {
+  font-size: min(var(--step-4), 19cqi);
+  font-weight: 900;
+  font-style: italic;
+  font-stretch: 125%;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+.hero h1 .box { color: var(--orange); display: block; }
+.tagline { font-weight: 700; letter-spacing: 0.36em; text-transform: uppercase; font-size: var(--step--1); }
+.hero .lede { font-size: var(--step-1); line-height: 1.45; color: var(--chalk); opacity: 0.86; max-width: 34ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.hero-media { position: relative; min-width: 0; }
+.hero-media img { width: 100%; aspect-ratio: 1116 / 1410; object-fit: cover; }
+.hero-media .marker { position: absolute; right: 8%; top: 9%; font-size: 1.35rem; max-width: 9ch; z-index: 1; }
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero-media { max-width: 520px; }
+}
+
+.counts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--mesh); border-bottom: 1px solid var(--mesh); }
+.counts div { padding: 22px clamp(12px, 2vw, 28px); display: grid; gap: 2px; border-left: 1px solid var(--mesh); }
+.counts div:first-child { border-left: 0; }
+.counts b { font-family: var(--display); font-weight: 900; font-stretch: 62%; font-size: var(--step-3); line-height: 1; color: var(--orange); font-variant-numeric: tabular-nums; }
+.counts span { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+
+/* Ticker */
+.ticker { background: var(--orange); color: var(--on-orange); overflow: hidden; white-space: nowrap; }
+.ticker-track { display: inline-flex; gap: 2.5rem; padding-block: 14px; animation: slide 28s linear infinite; font-family: var(--display); font-weight: 900; font-stretch: 62%; font-size: var(--step-1); letter-spacing: 0.08em; text-transform: uppercase; }
+.ticker-track span::after { content: "◆"; margin-left: 2.5rem; font-size: 0.6em; vertical-align: middle; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+section { padding-block: clamp(64px, 9vw, 128px); }
+.section-head { display: grid; gap: 18px; margin-bottom: clamp(32px, 5vw, 56px); }
+
+/* Why */
+.why { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; background: var(--mesh); border: 2px solid var(--mesh); }
+.why article { background: var(--ground); padding: clamp(22px, 2.6vw, 34px); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.why svg { width: 40px; height: 40px; color: var(--orange); }
+.why h3 { font-size: var(--step-1); font-weight: 800; font-stretch: 100%; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.1; }
+.why p { color: var(--dim); font-size: 0.98rem; }
+@media (max-width: 960px) { .why { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .why { grid-template-columns: minmax(0, 1fr); } }
+
+/* Anatomy */
+.anatomy { background: var(--panel); }
+.anatomy-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.figure { position: relative; max-width: 520px; width: 100%; }
+.figure img { width: 100%; aspect-ratio: 1116 / 1410; object-fit: cover; }
+.pin {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 34px; height: 34px; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 900; font-size: 0.95rem; color: var(--on-orange);
+  background: var(--orange); border: 0; cursor: pointer;
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  transition: transform .2s, background .2s;
+}
+.pin.on, .pin:hover { background: var(--chalk); transform: translate(-50%, -50%) scale(1.15); }
+.parts { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.parts li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 16px; padding: 16px; cursor: pointer; border-left: 3px solid transparent; transition: background .2s, border-color .2s; }
+.parts li.on { background: var(--panel-2); border-left-color: var(--orange); }
+.parts .n { font-family: var(--display); font-weight: 900; font-stretch: 62%; font-size: 1.8rem; line-height: 1; color: var(--orange); font-variant-numeric: tabular-nums; }
+.parts h3 { font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.2; margin-bottom: 4px; }
+.parts p { color: var(--dim); font-size: 0.95rem; }
+@media (max-width: 860px) { .anatomy-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(32px, 5vw, 56px); }
+.details figure { margin: 0; display: grid; gap: 12px; }
+.details img { width: 100%; aspect-ratio: 306 / 252; object-fit: cover; }
+.details figcaption { font-size: var(--step--1); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+.details figcaption span { display: block; color: var(--dim); font-weight: 500; letter-spacing: 0.1em; margin-top: 2px; }
+@media (max-width: 640px) { .details { grid-template-columns: minmax(0, 1fr); } .details img { aspect-ratio: 16 / 9; } }
+
+/* Play */
+.play-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.play-grid > img { width: 100%; aspect-ratio: 1116 / 1310; object-fit: cover; }
+.play-copy { display: grid; gap: 24px; min-width: 0; }
+.drills { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--mesh); }
+.drills li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--mesh); }
+.drills b { font-family: var(--display); font-weight: 800; font-stretch: 100%; text-transform: uppercase; letter-spacing: 0.04em; }
+.drills span { display: block; color: var(--dim); font-size: 0.95rem; }
+.drills i { font-style: normal; font-size: var(--step--1); color: var(--orange); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+@media (max-width: 860px) { .play-grid { grid-template-columns: minmax(0, 1fr); } .play-grid > img { max-width: 520px; } }
+
+/* Anywhere */
+.anywhere { background: linear-gradient(180deg, var(--ground), var(--panel)); }
+.anywhere-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.anywhere-grid img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 10; }
+.inbox { margin-top: clamp(32px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.inbox h3 { font-size: var(--step-2); font-weight: 900; font-stretch: 62%; text-transform: uppercase; }
+.inbox ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: var(--mesh); border: 2px solid var(--mesh); }
+.inbox li { background: var(--panel); padding: 18px 20px; display: grid; gap: 2px; }
+.inbox li b { font-family: var(--display); font-weight: 900; font-stretch: 62%; font-size: 2rem; line-height: 1; color: var(--orange); font-variant-numeric: tabular-nums; }
+.inbox li span { font-size: 0.95rem; color: var(--chalk); }
+.note { font-size: var(--step--1); color: var(--dim); margin-top: 12px; }
+@media (max-width: 760px) { .anywhere-grid, .inbox { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 420px) { .inbox ul { grid-template-columns: minmax(0, 1fr); } }
+
+/* Order */
+.order-card { background: var(--panel-2); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); padding: clamp(28px, 5vw, 64px); align-items: center; position: relative; overflow: hidden; }
+.order-card::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 240px; height: 240px; background: var(--orange); opacity: 0.12; clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); }
+.order-card h2 { font-size: var(--step-3); }
+.order-copy { display: grid; gap: 18px; min-width: 0; }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+.price b { font-family: var(--display); font-weight: 900; font-stretch: 62%; font-size: var(--step-2); }
+.price span { color: var(--dim); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+form { display: grid; gap: 12px; position: relative; z-index: 1; min-width: 0; }
+label { font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--dim); }
+.field { display: flex; flex-wrap: wrap; gap: 10px; }
+input[type="email"] { flex: 1 1 220px; min-width: 0; font: inherit; color: var(--chalk); background: var(--ground); border: 2px solid var(--mesh); padding: 0.95em 1em; }
+input[type="email"]:focus { border-color: var(--orange); outline: none; }
+.form-msg { font-size: 0.95rem; color: var(--dim); min-height: 1.6em; }
+.form-msg.ok { color: var(--chalk); }
+.perks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 4px; }
+.perks span { display: inline-flex; align-items: center; gap: 8px; font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--dim); }
+.perks svg { width: 18px; height: 18px; color: var(--orange); }
+@media (max-width: 860px) { .order-card { grid-template-columns: minmax(0, 1fr); } }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 56px); }
+.faq details { border-bottom: 1px solid var(--mesh); }
+.faq details:first-of-type { border-top: 1px solid var(--mesh); }
+.faq summary { list-style: none; cursor: pointer; padding: 20px 40px 20px 0; position: relative; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--display); font-size: 1.6rem; color: var(--orange); transition: transform .2s; }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq details p { color: var(--dim); padding-bottom: 20px; max-width: 60ch; }
+@media (max-width: 860px) { .faq { grid-template-columns: minmax(0, 1fr); } }
+
+/* Footer */
+footer { border-top: 1px solid var(--mesh); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; padding-block: 32px; }
+footer p { color: var(--dim); font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; }
+footer .marker { font-size: 1.2rem; }
+</style>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Kick Lab home">KICK <span>LAB</span><sup>®</sup></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#why">Why it works</a>
+      <a href="#anatomy">The build</a>
+      <a href="#anywhere">Portable</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="#order">Get yours</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-block:0">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Introducing</p>
+        <h1>Baller <span class="box">Box</span></h1>
+        <p class="tagline">Bring the stadium home.<br>Built for ballers.</p>
+        <p class="lede">Your very own football arena, designed for fast paced action, incredible goals and endless battles. With every rebound bringing the ball back into play, the action never stops.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#order">Get yours now
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn ghost" href="#anatomy">See the build</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img class="fade" src="images/cage-dark.webp" width="1116" height="1410" alt="The Baller Box octagon cage under stadium haze, with a goal set into the far side and the front panel">
+        <span class="marker" aria-hidden="true">Built for Ballers</span>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="counts" role="list">
+        <div role="listitem"><b>8</b><span>Rebound sides</span></div>
+        <div role="listitem"><b>2</b><span>Built-in goals</span></div>
+        <div role="listitem"><b>1</b><span>Carry bag</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Practise</span><span>Improve</span><span>Play more</span><span>Football differently</span><span>Level up</span><span>Practise</span><span>Improve</span><span>Play more</span><span>Football differently</span><span>Level up</span>
+    </div>
+  </div>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Why it works</p>
+        <h2>Football <em>reimagined.</em></h2>
+        <p class="lede">Eight sides. Two goals. Endless possibilities. No wasted spaces. Just pure football.</p>
+      </div>
+      <div class="why">
+        <article>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="20" cy="20" r="16"/><path d="M20 11l7 5-2.7 8h-8.6L13 16z"/><path d="M20 4v7M27 16l8-3M24.3 24l5 6.5M15.7 24l-5 6.5M13 16l-8-3"/></svg>
+          <h3>Builds skills</h3>
+          <p>Every wall is a passing partner. Strike it, control the return, go again.</p>
+        </article>
+        <article>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="24" width="7" height="11"/><rect x="16.5" y="15" width="7" height="20"/><rect x="28" y="6" width="7" height="29"/></svg>
+          <h3>Improves confidence</h3>
+          <p>Hundreds of touches a session add up fast. Players feel the difference on match day.</p>
+        </article>
+        <article>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 4l14 8v16l-14 8-14-8V12z"/><path d="M6 12l14 8 14-8M20 20v16"/></svg>
+          <h3>Compact &amp; portable</h3>
+          <p>Fits a back garden. Packs into one shoulder bag for the park or the training ground.</p>
+        </article>
+        <article>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 4l13 5v10c0 8-5.5 14-13 17C12.5 33 7 27 7 19V9z"/></svg>
+          <h3>Built to last</h3>
+          <p>Rigid frame, tensioned mesh and heavy kickboards made to take full-power shots.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="anatomy" class="anatomy">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The build</p>
+        <h2>Every part <em>has a job.</em></h2>
+      </div>
+      <div class="anatomy-grid">
+        <div class="figure">
+          <img class="fade" src="images/cage-dark.webp" width="1116" height="1410" alt="The Baller Box octagon cage, seen from the front, showing mesh panels, kickboards, orange corner joints and the front goal">
+          <button class="pin" type="button" data-part="0" style="left:50%;top:83%" aria-label="Integrated goal">1</button>
+          <button class="pin" type="button" data-part="1" style="left:50%;top:52%" aria-label="Rebound mesh">2</button>
+          <button class="pin" type="button" data-part="2" style="left:18%;top:80%" aria-label="Kickboards">3</button>
+          <button class="pin" type="button" data-part="3" style="left:68%;top:41%" aria-label="Corner joints">4</button>
+        </div>
+        <ol class="parts">
+          <li data-part="0"><span class="n">1</span><div><h3>Integrated goals</h3><p>A goal set into the front and back panels. No extra frames, no pegs, and the game keeps flowing.</p></div></li>
+          <li data-part="1"><span class="n">2</span><div><h3>Rebound mesh</h3><p>Tight-grid netting across all eight sides keeps the ball in play and sends it back to your feet.</p></div></li>
+          <li data-part="2"><span class="n">3</span><div><h3>Kickboards</h3><p>Solid low panels take the ground passes and hard strikes, with Baller Box branding front and back.</p></div></li>
+          <li data-part="3"><span class="n">4</span><div><h3>Corner joints</h3><p>Orange connectors lock each panel to the next. Push together to build, pull apart to pack.</p></div></li>
+        </ol>
+      </div>
+      <div class="details">
+        <figure><img class="fade-soft" src="images/detail-goal.webp" width="306" height="252" alt="Close-up of the built-in goal" loading="lazy"><figcaption>Integrated goals<span>Keep the game flowing</span></figcaption></figure>
+        <figure><img class="fade-soft" src="images/detail-board.webp" width="302" height="252" alt="Close-up of a Baller Box kickboard" loading="lazy"><figcaption>Durable design<span>Made for real play</span></figcaption></figure>
+        <figure><img class="fade-soft" src="images/detail-joint.webp" width="306" height="252" alt="Close-up of an orange corner joint" loading="lazy"><figcaption>Precision engineered<span>Details that matter</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="play">
+    <div class="wrap play-grid">
+      <img class="fade" src="images/strike.webp" width="1116" height="1310" alt="A player strikes a ball inside the Baller Box on a wet night under floodlights" loading="lazy">
+      <div class="play-copy">
+        <p class="eyebrow">Unleash your skills</p>
+        <h2>Train alone. <em>Battle a mate.</em></h2>
+        <p class="lede">Solo, the Box is a rebound wall on every side. With two players it's a cage match: first to five, winner stays on.</p>
+        <ul class="drills">
+          <li><div><b>Wall passes</b><span>Strike, control, repeat off any of the eight sides.</span></div><i>Solo</i></li>
+          <li><div><b>First touch</b><span>Hit it hard, kill the rebound dead.</span></div><i>Solo</i></li>
+          <li><div><b>Finishing</b><span>Shoot on the turn into the built-in goal.</span></div><i>Solo</i></li>
+          <li><div><b>1v1 cage match</b><span>One goal each. Use the walls to beat your opponent.</span></div><i>2 players</i></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="anywhere" class="anywhere">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Compact &amp; portable</p>
+        <h2>Take the game <em>anywhere.</em></h2>
+        <p class="lede">The whole Box breaks down into a single Kick Lab carry bag. Garden on Saturday, park on Sunday, training ground on Tuesday.</p>
+      </div>
+      <div class="anywhere-grid">
+        <img class="fade" src="images/one-v-one.webp" width="1493" height="930" alt="Two players battling one-on-one inside the Baller Box" loading="lazy">
+        <img class="fade" src="images/bag.webp" width="1493" height="720" alt="A player carrying the Kick Lab Baller Box bag over one shoulder" loading="lazy">
+      </div>
+      <div class="inbox">
+        <div>
+          <h3>What's in the bag</h3>
+          <p class="note">Everything you need to build the full octagon. No tools.</p>
+        </div>
+        <div>
+          <ul>
+            <li><b>8</b><span>Rebound mesh panels</span></li>
+            <li><b>8</b><span>Printed kickboards</span></li>
+            <li><b>2</b><span>Integrated goals</span></li>
+            <li><b>16</b><span>Orange corner joints</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="wrap">
+      <div class="order-card oct">
+        <div class="order-copy">
+          <p class="eyebrow">Launching soon</p>
+          <h2>Get yours <em>first.</em></h2>
+          <p class="lede">Join the list and we'll email you the moment orders open, with launch pricing for early sign-ups.</p>
+          <div class="price"><b>Launch price</b><span>Announced at launch</span></div>
+        </div>
+        <form id="waitlist" novalidate>
+          <label for="email">Your email</label>
+          <div class="field">
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button class="btn" type="submit">Join the list</button>
+          </div>
+          <p class="form-msg" id="form-msg" role="status"></p>
+          <div class="perks">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Fast delivery</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Play anywhere</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8v8M3 10v4M18 8v8M21 10v4M6 12h12"/></svg>Level up</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap faq">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>Before you <em>kick off.</em></h2>
+      </div>
+      <div>
+        <details>
+          <summary>How long does it take to set up?</summary>
+          <p>The panels push into the corner joints by hand, so there are no tools and no loose screws. Most people have it built in a few minutes once they've done it once.</p>
+        </details>
+        <details>
+          <summary>What surface can it go on?</summary>
+          <p>Grass, artificial turf or a hard court. The photos show it on a garden lawn, in a park and on an indoor floor.</p>
+        </details>
+        <details>
+          <summary>Who is it for?</summary>
+          <p>Young players building their touch, parents who want garden football that doesn't end up over the fence, and coaches who want a rebound station they can move between sessions.</p>
+        </details>
+        <details>
+          <summary>Can two people play at once?</summary>
+          <p>Yes. There's a goal on each side, so it works as a 1v1 cage as well as a solo training wall.</p>
+        </details>
+        <details>
+          <summary>How does it pack away?</summary>
+          <p>Pull the panels out of the joints and everything slides into the Kick Lab carry bag, which has a shoulder strap.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top">KICK <span>LAB</span><sup>®</sup></a>
+    <span class="marker">Football differently</span>
+    <p>© 2026 Kick Lab · kicklab.com</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const pins = document.querySelectorAll('.pin');
+  const items = document.querySelectorAll('.parts li');
+  const select = (i) => {
+    pins.forEach(p => p.classList.toggle('on', p.dataset.part === String(i)));
+    items.forEach(li => li.classList.toggle('on', li.dataset.part === String(i)));
+  };
+  pins.forEach(p => p.addEventListener('click', () => select(p.dataset.part)));
+  items.forEach(li => {
+    li.addEventListener('click', () => select(li.dataset.part));
+    li.addEventListener('mouseenter', () => select(li.dataset.part));
+  });
+  select(0);
+
+  const form = document.getElementById('waitlist');
+  const email = document.getElementById('email');
+  const msg = document.getElementById('form-msg');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!email.value || !email.checkValidity()) {
+      msg.className = 'form-msg';
+      msg.textContent = 'Enter an email address like name@example.com.';
+      email.focus();
+      return;
+    }
+    // Placeholder: connect this form to your email or store provider before launch.
+    msg.className = 'form-msg ok';
+    msg.textContent = 'Preview site: sign-ups are not connected yet.';
+  });
+})();
+</script>
+
+</body></html>
